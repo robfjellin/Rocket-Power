@@ -116,4 +116,12 @@ public class Movement : MonoBehaviour
         transform.Rotate(Vector3.forward * rotationThisFrame * Time.fixedDeltaTime);
         rb.freezeRotation = false;
     }
+
+    public void StopParticles()
+    {
+        mainThrusterParticles.Stop();
+        leftThrusterParticles.Stop();
+        rightThrusterParticles.Stop();
+    }
+
 }

@@ -14,6 +14,7 @@ public class CollisionHandler : MonoBehaviour
 
     float delayLevelLoad = 2f;
     AudioSource audioSource;
+    Movement movementScript;
 
     bool isControllable = true;
     bool isCollidable = true;
@@ -21,6 +22,7 @@ public class CollisionHandler : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        movementScript = GetComponent<Movement>();
     }
 
     void Update()
@@ -65,7 +67,8 @@ public class CollisionHandler : MonoBehaviour
         audioSource.Stop();
         audioSource.PlayOneShot(winSound);
         winParticles.Play();
-        GetComponent<Movement>().enabled = false;
+        movementScript.StopParticles();
+        movementScript.enabled = false;
         Invoke("LoadNextLevel", delayLevelLoad);
     }
 
@@ -76,7 +79,8 @@ public class CollisionHandler : MonoBehaviour
         audioSource.Stop();
         audioSource.PlayOneShot(crashSound);
         crashParticles.Play();
-        GetComponent<Movement>().enabled = false;
+        movementScript.StopParticles();
+        movementScript.enabled = false;
         Invoke("ReloadLevel", delayLevelLoad);
     }
 
